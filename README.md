@@ -22,6 +22,8 @@ The commands below use it, but you don't have to.
 
 On Mac, `brew install brotli`.
 
+
+
 ``` shell
 $ yarn install
 $ yarn run build
@@ -41,3 +43,36 @@ $ yarn run explore
 Requires Node >= 6.x since the `ngc` tool (and its deps) are now shipped as ES6 as well.
 
 Requires Java installed to run the Closure Compiler. We recommend installing http://zulu.org/download-dev/.
+
+
+
+!!!
+
+Rollup rxjs and rxjs/operators as FESM
+
+``` shell 
+$ npm run rollup:rxjs
+
+```
+
+Edit `node_modules/rxjs/package.json` and change the line that points to the es2015 bundle to now point to the FESM:
+
+`"es2015": "./_fesm2015/index.js"`
+
+Repeat for all rxjs modules. By default, only operators is needed by the typical @angular packages.
+
+Edit node_modules/rxjs/operators/package.json.
+
+`"es2015": "../_fesm2015/operators/index.js"`
+
+
+Change paths in closure.conf to the new fesm
+
+```
+--js node_modules/rxjs/package.json
+--js node_modules/rxjs/_fesm2015/index.js
+
+--js node_modules/rxjs/operators/package.json
+--js node_modules/rxjs/_fesm2015/operators/index.js
+```
+
