@@ -45,8 +45,12 @@ Requires Node >= 6.x since the `ngc` tool (and its deps) are now shipped as ES6 
 Requires Java installed to run the Closure Compiler. We recommend installing http://zulu.org/download-dev/.
 
 
+# How To Reproduce
 
-!!!
+Run the build as is
+
+
+# How To Fix
 
 Rollup rxjs and rxjs/operators as FESM
 
